@@ -1,105 +1,75 @@
-BOOLEAN_FUNCTION_MINIMIZATION
-AIM:
+# BOOLEAN_FUNCTION_MINIMIZATION
+
+**AIM:**
 
 To implement the given logic function verify its operation in Quartus using Verilog programming.
 
-F1= A’B’C’D’+AC’D’+B’CD’+A’BCD+BC’D
+F1= A’B’C’D’+AC’D’+B’CD’+A’BCD+BC’D 
 
 F2=xy’z+x’y’z+w’xy+wx’y+wxy
 
-Equipment Required:
+**Equipment Required:**
 
 Hardware – PCs, Cyclone II , USB flasher
 
-Software – Quartus prime
+**Software – Quartus prime**
 
-Theory
+**Theory**
 
-A combinational circuit is a circuit in which the output depends on the present combination of inputs. Combinational circuits are made up of logic gates. The output of each logic gate is determined by its logic function. Combinational circuits can be made using various logic gates, such as AND gates, OR gates, and NOT gates.
+**Logic Diagram**
 
-Procedure
+**Procedure**
 
-Type the program in Quartus software.
+1.	Type the program in Quartus software.
 
-Compile and run the program.
+2.	Compile and run the program.
 
-Generate the RTL schematic and save the logic diagram.
+3.	Generate the RTL schematic and save the logic diagram.
 
-Create nodes for inputs and outputs to generate the timing diagram.
+4.	Create nodes for inputs and outputs to generate the timing diagram.
 
-For different input combinations generate the timing diagram.
+5.	For different input combinations generate the timing diagram.
 
-Program:
 
-/* Program to implement the given logic function and to verify its operations in quartus using Verilog programming. 
+**Program:**
 
-Developed by : APARNA.M
+~~~
+module booleanfn(a,b,c,d,f1);
+input a,b,c,d;
+output f1;
+assign f1=((~b & ~d)|(~a & b & d)|(a & b & ~c));
+endmodule
+~~~
+
+~~~
+module booleanfnb(w,x,y,z,f2);
+input w,x,y,z;
+output f2;
+assign f2=((~y & z)|(w & y)|(x & y));
+endmodule
+~~~
+
+Developed by: APARNA.M
 RegisterNumber: 212223220008
 
-*/
-//Program to compute the function f1=a'b'c'd'+ac'd'+b'cd'+a'bcd+bc'd
-//f2=xy'z+x'y'z+w'xy+wx'y+wxy
-// simplify the logic using Boolean minimization/k map 
-//compute f2 and write verilog code for f2 as like f1
 
-module EX_02(a,b,c,d,w,x,y,z,f1,f2);
-input a,b,c,d,w,x,y,z;
-output f1,f2;
-wire adash,bdash,cdash,ddash,ydash,p,q,r,s,t,u;
-not(adash,a);
-not(bdash,b);
-not(cdash,c);
-not(ddash,d);
-not(ydash,y);
-and(p,bdash,ddash);
-and(q,adash,b,d);
-and(r,a,b,cdash);
-or(f1,p,q,r);
+**RTL realization**
+f1
+![Screenshot (196)](https://github.com/user-attachments/assets/81755bfe-362f-4aba-8b2a-f84f37d1d6a2)
 
-wire ybar,M,N,O;
-not(ybar,y);
-and(M,w,y);
-and(N,x,y);
-and(O,z,ybar);
-or(f2,M,N,O);
-endmodule
-Output: image
+f2
+![Screenshot (198)](https://github.com/user-attachments/assets/ec0315e2-efdf-457a-a35c-0b4260cb614a)
 
-Result:
+
+**Output:**
+![Screenshot (197)](https://github.com/user-attachments/assets/8778d584-0dba-4ca7-9b2c-aea173f39f3f)
+
+![Screenshot (199)](https://github.com/user-attachments/assets/cdf57f18-2d2b-41aa-b8e5-ce9bc7dfbff4)
+
+
+
+
+**Result:**
 
 Thus the given logic functions are implemented using and their operations are verified using Verilog programming.
 
-About
-No description, website, or topics provided.
-Resources
- Readme
-License
- GPL-3.0 license
- Activity
-Stars
- 0 stars
-Watchers
- 0 watching
-Forks
- 1 fork
-Report repository
-Releases
-No releases published
-Packages
-No packages published
-Languages
-VHDL
-51.8%
- 
-Verilog
-19.1%
- 
-Stata
-13.6%
- 
-HTML
-13.1%
- 
-Standard ML
-2.4%
-Footer
